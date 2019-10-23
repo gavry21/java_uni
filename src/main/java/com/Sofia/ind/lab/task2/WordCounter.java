@@ -2,34 +2,29 @@ package com.Sofia.ind.lab.task2;
 
 public class WordCounter {
 
-    private static String strl = "a aasd bsd bsd";
     public static void main(String[] args) {
+        String strl = "asd as as";
         countChar(strl);
     }
-        public static void countChar (String str)
+        public static int countChar (String text)
         {
-            int i = 0, c = 0;
-            String[] str2 = str.split(" ");
-            for (String str3 : str2){
-                i++;
+            int  c = 0, a=0;
+            String[] words = text.trim().split(" ");
+            for(String word : words){
+              System.out.println(word+": "+find(words,word));
             }
-            for (int j=0; j< i-1; j++){
-                for (int k= j+1; k < i; k++){
-                    if (!str2[j].equals(" ")) {
-                        if (str2[j].equals(str2[k])){
-                            c++;
-                            str2[k]= " ";
-                        }
-                    }
-                }
-                if (!str2[j].equals(" "))
-                    System.out.println("количество вхождений " + str2[j] + " - " +(c+1));
-                c = 0;
-            }
-            if (!str2[i-1].equals(" "))
-                System.out.println("количество вхождений " + str2[i] + " - " + 1);
-
+         return 0;
         }
+
+    private static int find(String[] words, String findWord) {
+        int count=0;
+        for(String word : words){
+            if (word.equals(findWord)) {
+                count++;
+            }
+        }
+        return count;
+    }
 
 
 }
