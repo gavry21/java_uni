@@ -10,8 +10,6 @@ import java.util.Scanner;
         private String lesson;
         private String time;
         private String day;
-        private Lessons[] lessons;
-
 
     public Timetable(Group[] group, String lesson, String time, String day){
         this.groups = group;
