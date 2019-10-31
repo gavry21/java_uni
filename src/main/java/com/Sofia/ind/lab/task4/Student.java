@@ -29,9 +29,7 @@ public class Student{
     @Override
     public String toString(){
         return String.format("%n"+"Name: " +
-                name + "%n"+"Faculty: " +
-                fac +"%n"+"Age: " +
-                age +"%n"+"Group: " +
+                name + "%n"+"Group: " +
                 group );
     }
 }

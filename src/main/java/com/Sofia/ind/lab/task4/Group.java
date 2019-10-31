@@ -22,12 +22,14 @@ public class Group {
     }
     public static void main(String[] args) {
 
+        /*
         Student S1 = new Student("Sarah", "App math", 21, 32);
         Student S2 = new Student("Thomas", "App math", 20, 32);
 
         Group g1 = new Group( new Student[] {S1, S2});//создали группу, в которую поместили студента
 
         System.out.println(g1);
+        */
     }
 
 
