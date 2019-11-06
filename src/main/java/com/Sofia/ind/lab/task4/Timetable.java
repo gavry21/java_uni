@@ -28,18 +28,15 @@ import java.util.Scanner;
         teachers[teachers.length] = teacher;
     }
 
+   @Override
 
-    @Override
-    public String toString(){
-        return Arrays.toString(teachers);
-    }
-            public String toString1(){
-                return String.format("%n"+"Teacher: "+teachers+
+   public String toString(){
+        return String.format("%n"+
+                Arrays.toString(teachers).replace("[", "").replace("]", "")+
                         "%n"+"Day: " + day +
                         "%n"+"Time: " +
                         time +"%n");
             }
-
 
 
     public static void main(String[] args) {
