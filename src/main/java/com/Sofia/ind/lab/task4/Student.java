@@ -7,8 +7,7 @@ public class Student{
 
    private String name;
    private String fac;
-   private int age;
-   private int group;
+   private int id;
 
     //чтобы получить доступ к приватным переменным
   /* public String getName(){
@@ -19,17 +18,22 @@ public class Student{
    }
 */
       //Вместо get и set
-   public Student(String name, String fac, int age, int group) {
+   public Student(int id, String name, String fac) {
        this.name = name;
        this.fac = fac;
-       this.age = age;
-       this.group = group;
+       this.id = id;
    }
 
-    @Override
-    public String toString(){
-        return String.format("%n"+"Name: " +
-                name + "%n"+"Group: " +
-                group );
+    public int getId() {
+        return id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFac() {
+        return fac;
+    }
+
 }
