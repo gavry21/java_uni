@@ -10,14 +10,6 @@ public class Student{
    private int id;
 
     //чтобы получить доступ к приватным переменным
-  /* public String getName(){
-       return name;
-    }
-   public void setName(String name){
-       this.name = name;
-   }
-*/
-      //Вместо get и set
    public Student(int id, String name, String fac) {
        this.name = name;
        this.fac = fac;

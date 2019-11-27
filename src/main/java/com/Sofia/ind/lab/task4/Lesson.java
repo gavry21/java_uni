@@ -6,7 +6,7 @@ import java.time.LocalTime;
 
 public class Lesson {
     private LocalTime localTime;
-    private Group[] group;
+    private Group group;
     private Subject subject;
     private Teacher teacher;
     private DayOfWeek dayOfWeek;
@@ -14,7 +14,7 @@ public class Lesson {
 
     //передача данных о занятиях
     public Lesson(Subject subject, DayOfWeek dayOfWeek, LocalTime localTime,
-                  Group[] group, Teacher teacher, int number){
+                  Group group, Teacher teacher, int number){
         this.localTime = localTime;
         this.dayOfWeek = dayOfWeek;
         this.group = group;
@@ -32,7 +32,7 @@ public class Lesson {
         this.dayOfWeek = dayOfWeek;
     }
 
-    public Group[] getGroup() {
+    public Group getGroup() {
         return group;
     }
 
@@ -48,7 +48,7 @@ public class Lesson {
         return subject;
     }
 
-    public Teacher getEducator() {
+    public Teacher getTeacher() {
         return teacher;
     }
 
