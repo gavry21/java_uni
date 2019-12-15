@@ -1,70 +1,76 @@
 package com.Sofia.ind.ind1;
 
+import com.google.gson.Gson;
+import org.omg.PortableServer.THREAD_POLICY_ID;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-class Creater {
-    private Villages[] villages = new Villages[0];
-    private int idCounter = 0;
-    private Info[] infos;
+public class Creater {
+    private int id;
+    private String name;
+    private Map<Integer, Characters> characters = new HashMap<>();
 
-    public int getIdCounter() {
-        return idCounter;
+    public Creater(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public void setIdCounter(int idCounter) {
-        this.idCounter = idCounter;
+    public int getId() {
+        return id;
     }
 
-    int createID() {
-        return idCounter++;
+    public String getName() {
+        return name;
     }
 
-    Villages[] getVillages(){
-        return villages;
+    public Map<Integer, Characters> getCharacters() {
+        return characters;
     }
 
-    Info[] getInfos(){
-        return infos;
+    public void setCharacters(Map<Integer, Characters> characters) {
+        this.characters = characters;
     }
 
-    public void setVillages(Villages[] villages) {
-        this.villages = villages;
-    }
-
-    public Villages createVillages(int villageName, Characters... characters) {
-        Villages village = new Villages();
-        village.villageName = villageName;
-        village.charecters = characters;
-
-        Villages[] villages1 = new Villages[1];
-        if (villages != null) villages1 = Arrays.copyOf(villages,villages.length+1);
-
-        villages1[villages.length] = village;
-        villages = villages1;
-        return village;
-    }
-
-    public void addCharacters(int villageName, Characters character) {
-        Characters[] characters;
-        for (Villages village : villages){
-            if (village.villageName == villageName){
-                characters = Arrays.copyOf(village.charecters,village.charecters.length+1);
-                characters[village.charecters.length] = character;
-                village.charecters = characters;
-            }
+    public void workJSON() {
+        Gson gson = new Gson();
+        String json = gson.toJson(this);
+        try {
+            // Запись в файл
+            FileWriter writer = new FileWriter("src/main/resources/indJSON.txt", false);
+            writer.write(json);
+            writer.close();
+            // Чтение из файла
+            Stream<String> streamInfoFromFile = Files.lines(                                    // Получаем Stream из строк(читаем файл построчно в потоке).    lines(Path path , Charset charset(необязательно)).
+                    Paths.get("src/main/resources/indJSON.txt"));                                // Для создания экземпляра класса Path, используем статический метод get класса Paths, позволяющего создать путь из строки или URI.
+            String info = streamInfoFromFile.collect(Collectors.toCollection(ArrayList::new)).get(0);
+            Creater data1 = gson.fromJson(info, Creater.class);
+            data1.getCharacters().values().forEach(n -> System.out.println(n.getName()));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void createInfo(){
-        Villages village1 = createVillages(1);
-        Villages village2 = createVillages(2);
+    public void addCharacters(Characters characters) {
+        this.characters.put(this.characters.size() + 1, characters);
+    }
 
-        infos = new Info[]{
-                new Info(Info.Technics.Fūinjutsu,new Villages[]{village1},1),
-                new Info(Info.Technics.Genjutsu,new Villages[]{village1},2),
-                new Info(Info.Technics.Ninjutsu,new Villages[]{village1},3),
-                new Info(Info.Technics.Fūinjutsu,new Villages[]{village2},1),
-                new Info(Info.Technics.Taijutsu,new Villages[]{village2},2),
-        };
+
+    @Override
+    public String toString() {
+        return "Creater{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", characters=" + characters +
+                '}';
     }
 }
