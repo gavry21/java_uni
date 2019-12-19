@@ -1,6 +1,7 @@
 package com.Sofia.ind.ind1;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.omg.PortableServer.THREAD_POLICY_ID;
 
 import java.io.FileWriter;
@@ -41,14 +42,17 @@ public class Creater {
         this.characters = characters;
     }
 
+
     public void workJSON() {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();//для записи не в одну строку
         String json = gson.toJson(this);
-        try {
+        try(FileWriter writer = new FileWriter("src/main/resources/indJSON.txt", false);) {
             // Запись в файл
-            FileWriter writer = new FileWriter("src/main/resources/indJSON.txt", false);
             writer.write(json);
-            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try{
             // Чтение из файла
             Stream<String> streamInfoFromFile = Files.lines(                                    // Получаем Stream из строк(читаем файл построчно в потоке).    lines(Path path , Charset charset(необязательно)).
                     Paths.get("src/main/resources/indJSON.txt"));                                // Для создания экземпляра класса Path, используем статический метод get класса Paths, позволяющего создать путь из строки или URI.

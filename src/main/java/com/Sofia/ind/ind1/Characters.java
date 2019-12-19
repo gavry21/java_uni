@@ -24,7 +24,7 @@ public class Characters{
             for (Characters characters : village.getCharacters().values()) {
                 Info info = characters.getInfoOfCharacters().get(village.getId());
                 if (info.getCode() == 0)
-                    System.out.println("Менеджер проекта : " + characters.getName());
+                    System.out.println("Глава : " + characters.getName());
             }
             for (Characters characters : village.getCharacters().values()) {
                 Info info = characters.getInfoOfCharacters().get(village.getId());

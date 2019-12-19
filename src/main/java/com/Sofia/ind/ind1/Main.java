@@ -2,49 +2,41 @@ package com.Sofia.ind.ind1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+/*
+public class Main {
+    private List<Info> infos;
 
-public class Main extends Creater {
-    private int choose;
-    private String name;
-    private ArrayList<Info> tableCharacter = new ArrayList<>();
 
-    public ArrayList<Info> getTableCharacter(){
-        return tableCharacter;
+    public Main(List<Info> infos) {
+        this.infos = new ArrayList<>(infos);
     }
 
-    public Main(int choose, String name){
-        this.choose = choose;
-        this.name = name;
-        getMain();
+    public List<Info> getInfos(){
+        return infos;
     }
 
-    private void getMain() {
-        Creater creater = new Creater();
-        creater.createInfo();
+    public List<Info> findInfo(Characters character) {
+        List<Info> infos1 = new ArrayList<>();
 
-        creater.addCharacters(1,new Characters(createID(),"Наруто","Узумаки"));
-        creater.addCharacters(1,new Characters(createID(), "Саске", "Учиха"));
-        creater.addCharacters(2,new Characters(createID(),"Гаара","Казекаге"));
-        if (choose == 1){
-            System.out.println("Техники:");
-            Villages villageCharacter = find(creater.getVillages(), name);
-            for (Info info : creater.getInfos()) {
-                if (Arrays.stream(info.getVillages()).anyMatch(villages1 -> villages1 == villageCharacter)) {
-                    tableCharacter.add(info);
-                    System.out.println("\t" + info.getNumber() + ". " + info.getTechnics() + "\n");
-                }
-            }
+        for (Info info : infos) {
+            for (Characters character1 : info.getVillages().getCharacters())
+                if (character1.getName().equals(character.getName()))
+                    infos1.add(info);
+        }
+        outPut(infos1);
+        return infos1;
+    }
+
+    public void outPut(List<Info> infos){
+        for(Info info: infos){
+            System.out.println("\t |" + info.getVillages() + "|");
+            System.out.println("\t --------------------------------");
+            System.out.println("\t " + info.getVillages().getCharacters());
+            System.out.println("\t " + info.getTechnics());
+            System.out.println("\t " + info.getVillages().getVillageName());
+            System.out.println();
         }
     }
-
-    private Villages find(Villages[] villages, String name) {
-        for (Villages village : villages)
-            for (Characters character : village.charecters)
-                if (character.getName().equals(name)) return village;
-                return null;
-    }
-
-    public static void main(String[] args) {
-        Main main = new Main(1,"Саске");
-    }
 }
+ */
